@@ -1,0 +1,9 @@
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-15 11:36:44
+Session: 60e3560d-b745-4f84-9be6-dd052725801b
+Lead status: Hot (confidence: 90%)
+Sentiment: Urgent | Urgency: high
+Reason: User has specified a budget and mentioned urgency for a college laptop.
+Last message: "Hi, do you have laptops under 40000 for college its urgent?"
+============================================================

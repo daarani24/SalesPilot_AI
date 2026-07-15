@@ -1,0 +1,187 @@
+TECHHUB COMPUTERS - PRODUCT CATALOG & POLICIES
+Last updated: July 2026
+
+=====================================================
+ABOUT TECHHUB
+=====================================================
+TechHub Computers is a laptop and mobile phone retailer serving students,
+professionals, and businesses. We offer new devices, EMI payment plans,
+a 7-day replacement guarantee, and free setup support on every purchase.
+
+=====================================================
+LAPTOPS - BUDGET TIER (Under ₹40,000)
+=====================================================
+
+Product: TechHub Acer Aspire 3
+Price: ₹32,999
+Processor: AMD Ryzen 5 5500U
+RAM: 8GB DDR4
+Storage: 512GB SSD
+Display: 15.6" FHD
+Battery Life: Up to 8 hours
+Best For: Students, everyday browsing, office work, online classes
+Weight: 1.7kg
+
+Product: TechHub HP 15s
+Price: ₹36,499
+Processor: Intel Core i3 12th Gen
+RAM: 8GB DDR4
+Storage: 512GB SSD
+Display: 15.6" FHD
+Battery Life: Up to 7 hours
+Best For: Students, basic multitasking, MS Office work
+Weight: 1.69kg
+
+=====================================================
+LAPTOPS - MID TIER (₹40,000 - ₹75,000)
+=====================================================
+
+Product: TechHub Dell Inspiron 14
+Price: ₹58,990
+Processor: Intel Core i5 13th Gen
+RAM: 16GB DDR4
+Storage: 512GB SSD
+Display: 14" FHD Anti-Glare
+Battery Life: Up to 10 hours
+Best For: Working professionals, moderate multitasking, light video editing
+Weight: 1.48kg
+Notes: Most popular model for remote workers
+
+Product: TechHub Lenovo IdeaPad Slim 5
+Price: ₹64,990
+Processor: AMD Ryzen 7 7730U
+RAM: 16GB DDR4
+Storage: 1TB SSD
+Display: 14" 2.8K OLED
+Battery Life: Up to 12 hours
+Best For: Content creators, professionals needing color-accurate display
+Weight: 1.55kg
+
+=====================================================
+LAPTOPS - PREMIUM TIER (Above ₹75,000)
+=====================================================
+
+Product: TechHub Apple MacBook Air M2
+Price: ₹99,900
+Processor: Apple M2 chip
+RAM: 8GB Unified Memory
+Storage: 256GB SSD
+Display: 13.6" Liquid Retina
+Battery Life: Up to 18 hours
+Best For: Designers, developers, professionals wanting premium build quality
+Weight: 1.24kg
+
+Product: TechHub ASUS ROG Strix G16
+Price: ₹1,29,990
+Processor: Intel Core i7 13th Gen
+RAM: 16GB DDR5
+Storage: 1TB SSD
+GPU: NVIDIA RTX 4060 8GB
+Display: 16" QHD 165Hz
+Battery Life: Up to 6 hours (gaming), 10 hours (regular use)
+Best For: Gamers, video editors, 3D rendering, heavy multitasking
+Weight: 2.5kg
+
+=====================================================
+MOBILE PHONES - BUDGET TIER (Under ₹15,000)
+=====================================================
+
+Product: TechHub Redmi Note 13
+Price: ₹13,999
+Processor: Snapdragon 685
+RAM: 6GB
+Storage: 128GB
+Camera: 108MP main + 8MP ultrawide
+Battery: 5000mAh
+Best For: Daily use, students, camera on a budget
+
+=====================================================
+MOBILE PHONES - MID TIER (₹15,000 - ₹35,000)
+=====================================================
+
+Product: TechHub Samsung Galaxy M35 5G
+Price: ₹18,999
+Processor: Exynos 1280
+RAM: 8GB
+Storage: 128GB
+Camera: 50MP main with OIS
+Battery: 6000mAh
+Best For: Long battery life users, 5G-ready daily drivers
+
+Product: TechHub OnePlus Nord CE 4
+Price: ₹24,999
+Processor: Snapdragon 7 Gen 3
+RAM: 8GB
+Storage: 256GB
+Camera: 50MP main
+Battery: 5500mAh, 100W fast charging
+Best For: Fast charging priority, smooth performance
+
+=====================================================
+MOBILE PHONES - PREMIUM TIER (Above ₹35,000)
+=====================================================
+
+Product: TechHub Apple iPhone 15
+Price: ₹69,900
+Processor: A16 Bionic
+RAM: 6GB
+Storage: 128GB
+Camera: 48MP main with Dynamic Island
+Battery: Up to 20 hours video playback
+Best For: iOS ecosystem users, premium camera and build quality
+
+=====================================================
+PRICING & PAYMENT POLICIES
+=====================================================
+
+EMI Options: Available on all products above ₹15,000. No-cost EMI for
+3, 6, and 9 month tenures on select bank cards.
+
+Discounts:
+- Students get 5% discount with valid ID on laptops.
+- Bulk orders (5+ units) for businesses get 10% discount, contact sales team.
+- Festival season offers up to 12% off on select premium models (seasonal, ask sales team for current status).
+
+Warranty: All laptops come with 1-year manufacturer warranty.
+All mobile phones come with 1-year manufacturer warranty + 6 months
+TechHub extended screen protection.
+
+Replacement Policy: 7-day no-questions-asked replacement if the device
+has a manufacturing defect.
+
+Delivery: Free delivery within city limits. 2-4 business days for
+other locations within India.
+
+=====================================================
+COMPETITOR COMPARISON NOTES (for objection handling)
+=====================================================
+
+vs Local unbranded stores: TechHub offers manufacturer warranty and
+7-day replacement guarantee, which most local unbranded sellers do not.
+
+vs Large e-commerce marketplaces: TechHub offers in-person demo,
+free setup support (data transfer, software install), and immediate
+replacement without waiting for online return processing (usually 7-10
+days on marketplaces vs same-day at TechHub physical support).
+
+Price matching: If a customer provides proof of a lower price from an
+authorized retailer for the exact same model, TechHub sales team can
+review a price match request (not automatic, must be escalated to
+human sales rep).
+
+=====================================================
+COMMON CUSTOMER QUESTIONS
+=====================================================
+
+Q: Can I upgrade RAM or storage later?
+A: Most laptops in our Mid and Premium tier support RAM/storage upgrades
+except MacBook Air (Apple devices have soldered/fixed memory, not
+upgradeable after purchase).
+
+Q: Do you buy back old devices?
+A: Yes, TechHub offers an exchange program. Exchange value depends on
+device age and condition, evaluated in-store.
+
+Q: Is financing available for students without credit history?
+A: Yes, TechHub partners with select NBFCs for student financing plans
+requiring only ID proof and college enrollment proof.
