@@ -1,0 +1,23 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment secrets - NEVER commit API keys
+.env
+
+# ChromaDB local data
+chroma_db/
+*.sqlite3
+
+# Node (frontend, added Day 2)
+node_modules/
+dist/
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated quotations
+generated_quotations/
