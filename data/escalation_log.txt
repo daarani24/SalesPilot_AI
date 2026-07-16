@@ -97,3 +97,75 @@ Sentiment: Happy | Urgency: high
 Reason: The user has confirmed their order and payment method.
 Last message: "good morning"
 ============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:26:41
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 90%)
+Sentiment: Interested | Urgency: medium
+Reason: User asked for a quotation with their name on it, indicating clear buying intent.
+Last message: "yes"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:27:10
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 90%)
+Sentiment: Interested | Urgency: medium
+Reason: User asked for a quotation and showed interest in purchasing the Acer Aspire 3
+Last message: "ok generate it to me"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:27:42
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 90%)
+Sentiment: Interested | Urgency: medium
+Reason: User has asked for a quotation and shown clear interest in purchasing the Acer Aspire 3 laptop.
+Last message: "i need a acer laptop that u have mentioned"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:28:30
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 90%)
+Sentiment: Interested | Urgency: medium
+Reason: User has asked for a quotation and is inquiring about the processing time.
+Last message: "ok let me know how much days it take to process"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:29:02
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: User has confirmed the purchase of the Acer Aspire 3 laptop.
+Last message: "ok i confirm that product"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:29:46
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 95%)
+Sentiment: Urgent | Urgency: high
+Reason: The customer has explicitly confirmed the purchase of the Acer laptop and is inquiring about the processing time.
+Last message: "i told that i need the acer laptop that u have mentione then why ur onfusing me"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:30:05
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 95%)
+Sentiment: Happy | Urgency: medium
+Reason: The customer has confirmed the purchase of the Acer Aspire 3 laptop.
+Last message: "ok"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:30:22
+Session: c7f9db76-ecd3-42e7-a229-bc95d4fc23c8
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: The user has confirmed the purchase of the Acer Aspire 3 and is waiting for the sales team to follow up with payment and delivery details.
+Last message: "thank you"
+============================================================
