@@ -35,7 +35,7 @@ Respond with ONLY valid JSON, nothing else, in this exact format:
 {{"lead_status": "...", "confidence": 0, "sentiment": "...", "urgency": "...", "reasoning": "one short sentence"}}
 """
 
-def analyze_lead(conversation_history):
+def analyze_lead(conversation_history:list[dict])->dict:
     """
     conversation_history: list of {"role": "user"/"assistant", "content": "..."}
     representing the conversation SO FAR (can be just one customer message,

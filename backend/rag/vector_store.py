@@ -8,7 +8,7 @@ CATALOG_PATH = os.path.join(
  
 CHROMA_DB_PATH = os.path.join(os.path.dirname(__file__), "..", "chroma_db")
  
-def _split_into_chunks(raw_text):
+def _split_into_chunks(raw_text: str)->list[str]:
     """
     Splits the catalog into chunks using the '====' section dividers.
     Each chunk keeps a section together (e.g. one product's full spec sheet),
@@ -54,7 +54,7 @@ class CatalogVectorStore:
         self.collection.add(documents=chunks, ids=ids)
         print(f"[vector_store] Indexed {len(chunks)} catalog chunks into ChromaDB.")
  
-    def search(self, query: str, top_k):
+    def search(self, query: str, top_k: int = 3)->list[str]:
         """
         Returns the top_k most relevant catalog chunks for a given query.
         Example: search("laptop under 40000 for college") ->

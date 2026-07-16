@@ -22,7 +22,7 @@ STRICT RULES:
   but stay respectful of competitors — no bashing, just factual advantages.
 """
  
-def _is_useful_chunk(chunk):
+def _is_useful_chunk(chunk:str)->bool:
     """
     Filters out chunks that are just a lone section header with no real
     product data (these can happen because we split the catalog on '====').
@@ -30,7 +30,7 @@ def _is_useful_chunk(chunk):
     """
     return len(chunk.strip()) > 40
  
-def handle(customer_message , conversation_history):
+def handle(customer_message:str , conversation_history:list[dict]|None=None)->str:
     """
     Main entry point for this agent. Called by main.py once the Coordinator
     has decided the intent is product_inquiry or objection_or_comparison.

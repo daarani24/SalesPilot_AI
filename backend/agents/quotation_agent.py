@@ -14,7 +14,7 @@ STUDENT_DISCOUNT = 0.05
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "generated_quotations")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
  
-def _extract_price(catalog_chunk):
+def _extract_price(catalog_chunk:str)->float|None:
     """
     Pulls the numeric price out of a catalog chunk like 'Price: ₹32,999'.
     Returns None if no price pattern is found (defensive -- catalog format
@@ -25,12 +25,12 @@ def _extract_price(catalog_chunk):
         return None
     return float(match.group(1).replace(",", ""))
  
-def _extract_product_name(catalog_chunk: str) -> str:
+def _extract_product_name(catalog_chunk: str)->str:
     """Pulls the product name out of a catalog chunk like 'Product: TechHub Acer Aspire 3'."""
     match = re.search(r"Product:\s*(.+)", catalog_chunk)
     return match.group(1).strip() if match else "Unknown Product"
  
-def find_product(product_query):
+def find_product(product_query:str)->dict|None:
     """
     Uses the same RAG search the Sales Agent uses, so quoted prices always
     match what the customer was told earlier in the conversation -- one
@@ -50,7 +50,8 @@ def find_product(product_query):
 def generate_quotation(
     customer_name: str,
     product_query: str,
-    is_student: bool = False):
+    is_student: bool = False,
+    )->dict:
     """
     Main entry point. Returns a dict with the calculation breakdown and the
     path to the generated PDF file, or an "error" key if the product wasn't found.
@@ -80,7 +81,7 @@ def generate_quotation(
     breakdown["pdf_path"] = pdf_path
     return breakdown
  
-def _render_pdf(breakdown: dict) -> str:
+def _render_pdf(breakdown: dict)->str:
     """Builds the actual PDF file using reportlab. Pure formatting, no business logic here."""
     safe_name = re.sub(r"[^\w\-]", "_", breakdown["customer_name"])
     filename = f"quotation_{safe_name}_{datetime.now().strftime('%Y%m%d%H%M%S')}.pdf"

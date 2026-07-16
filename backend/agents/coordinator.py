@@ -28,7 +28,7 @@ Respond with ONLY valid JSON in this exact format, nothing else:
 """
  
  
-def classify_intent(customer_message):
+def classify_intent(customer_message:str)->dict:
     """
     Calls the LLM once with a small, cheap prompt to classify intent.
     Returns a dict like: {"intent": "product_inquiry", "reasoning": "..."}
