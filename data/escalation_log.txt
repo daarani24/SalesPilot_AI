@@ -16,3 +16,84 @@ Sentiment: Urgent | Urgency: high
 Reason: User has chosen a laptop and requested a formal quote with a stated urgent deadline.
 Last message: "I'll take the Acer one, can I get a formal quote? I need it urgently, my classes start Monday."
 ============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:06:43
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 80%)
+Sentiment: Interested | Urgency: medium
+Reason: User has specified a budget and expressed intent to buy a laptop.
+Last message: "hello i want to buy a laptop under the price 50k can i get that"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:07:42
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 80%)
+Sentiment: Interested | Urgency: medium
+Reason: User has a clear budget and stated intent to buy a laptop for a specific purpose.
+Last message: "yes im a student i want for my placement training , and i dont know about laptops so u suggest me a good one"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:08:09
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 90%)
+Sentiment: Happy | Urgency: high
+Reason: User has shown clear buying intent by asking to book their order.
+Last message: "ok how can i book my order"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:08:42
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 90%)
+Sentiment: Happy | Urgency: high
+Reason: User has explicitly stated their intention to book a laptop and asked how to place an order.
+Last message: "i want to book acer aspire 3 laptop"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:08:55
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: User has explicitly stated their intention to buy and has chosen a laptop model.
+Last message: "cash"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:09:12
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: User has explicitly stated their intention to buy a specific laptop and has proceeded to book the order.
+Last message: "can i get the bill"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:09:43
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: The user has explicitly stated their intention to buy and has completed the ordering process.
+Last message: "yes add that in my bill"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:11:05
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: The user has confirmed their order and payment method.
+Last message: "hello"
+============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 23:11:16
+Session: 09710164-0e76-4008-95e7-2f77cf26ef13
+Lead status: Hot (confidence: 100%)
+Sentiment: Happy | Urgency: high
+Reason: The user has confirmed their order and payment method.
+Last message: "good morning"
+============================================================

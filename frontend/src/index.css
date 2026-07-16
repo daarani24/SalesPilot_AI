@@ -6,7 +6,7 @@
   --glass-fill: rgba(255, 255, 255, 0.05);
   --glass-bg: var(--glass-fill); 
   --glass-border: rgba(255, 255, 255, 0.09);
- 
+
   --text-primary: #e2e8f0;
   --text-muted: #94a3b8;
   --text-dim: #5c6b82;
@@ -22,6 +22,9 @@
   --status-warm-bg: rgba(251, 191, 36, 0.12);
   --status-cold: #38bdf8;
   --status-cold-bg: rgba(56, 189, 248, 0.12);
+ 
+  --warm: var(--status-warm);
+  --cold: var(--status-cold);
  
   --agent-coordinator: #a78bfa;
   --agent-sales: #34d399;
@@ -57,7 +60,7 @@ h1, h2, h3 {
   font-family: var(--font-display);
   margin: 0;
 }
- 
+
 .glass-panel {
   background: var(--glass-fill);
   border: 1px solid var(--glass-border);
