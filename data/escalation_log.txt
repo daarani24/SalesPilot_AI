@@ -7,3 +7,12 @@ Sentiment: Urgent | Urgency: high
 Reason: User has specified a budget and mentioned urgency for a college laptop.
 Last message: "Hi, do you have laptops under 40000 for college its urgent?"
 ============================================================
+
+============================================================
+🔥 HOT LEAD ALERT — 2026-07-16 19:49:39
+Session: ba07e93e-18f8-44fa-9b7c-b5bb3ef089b8
+Lead status: Hot (confidence: 100%)
+Sentiment: Urgent | Urgency: high
+Reason: User has chosen a laptop and requested a formal quote with a stated urgent deadline.
+Last message: "I'll take the Acer one, can I get a formal quote? I need it urgently, my classes start Monday."
+============================================================

@@ -10,7 +10,7 @@ EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD")
 ALERT_RECIPIENT = os.getenv("ALERT_RECIPIENT")
  
-def notify_hot_lead(session_id, lead_data, last_customer_message):
+def notify_hot_lead(session_id: str, lead_data: dict, last_customer_message: str):
     """
     Called from main.py whenever should_escalate is True.
     Always logs to console/log file. Sends a real email ONLY if email
@@ -35,7 +35,7 @@ def notify_hot_lead(session_id, lead_data, last_customer_message):
     if EMAIL_ADDRESS and EMAIL_APP_PASSWORD and ALERT_RECIPIENT:
         _send_email_alert(session_id, lead_data, last_customer_message)
  
-def _append_to_log_file(alert_text: str):
+def _append_to_log_file(alert_text:str):
     """Keeps a persistent record of all escalations, even after the server restarts."""
     log_path = os.path.join(os.path.dirname(__file__), "..", "data", "escalation_log.txt")
     with open(log_path, "a", encoding="utf-8") as f:

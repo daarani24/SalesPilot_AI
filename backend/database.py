@@ -41,7 +41,7 @@ def init_db():
     conn.commit()
     conn.close()
  
-def save_message(session_id, role, content, agent_used):
+def save_message(session_id: str, role: str, content: str, agent_used: str = None):
     """Logs one chat message (customer or agent) to the conversations table."""
     conn = get_connection()
     conn.execute(
@@ -51,7 +51,7 @@ def save_message(session_id, role, content, agent_used):
     conn.commit()
     conn.close()
  
-def upsert_lead(session_id , lead_data):
+def upsert_lead(session_id: str, lead_data: dict):
     """
     Saves/updates the latest lead score for a session.
     'Upsert' = insert if new, update if the session already has a score
@@ -81,7 +81,7 @@ def upsert_lead(session_id , lead_data):
     conn.close()
  
  
-def get_conversation_history(session_id):
+def get_conversation_history(session_id: str) -> list[dict]:
     """Returns the full message history for a session, formatted for LLM message lists."""
     conn = get_connection()
     rows = conn.execute(
@@ -92,7 +92,7 @@ def get_conversation_history(session_id):
     return [{"role": row["role"], "content": row["content"]} for row in rows]
  
  
-def get_all_leads():
+def get_all_leads() -> list[dict]:
     """Returns all leads -- used by the Day 2 dashboard."""
     conn = get_connection()
     rows = conn.execute("SELECT * FROM leads ORDER BY updated_at DESC").fetchall()
