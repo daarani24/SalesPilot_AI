@@ -6,7 +6,10 @@ from rag.vector_store import catalog_store
 load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+
+MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
+
+MAX_HISTORY_TURNS = 6
 
 SALES_AGENT_SYSTEM_PROMPT = """You are a friendly, knowledgeable sales assistant for TechHub Computers,
 a laptop and mobile phone store. You help customers find the right product and
@@ -91,7 +94,7 @@ def handle(customer_message: str, conversation_history: list[dict] | None = None
     messages = [{"role": "system", "content": SALES_AGENT_SYSTEM_PROMPT}]
 
     if conversation_history:
-        messages.extend(conversation_history)
+        messages.extend(conversation_history[-MAX_HISTORY_TURNS:])
 
     messages.append({
         "role": "user",
@@ -108,7 +111,7 @@ def handle(customer_message: str, conversation_history: list[dict] | None = None
         return response.choices[0].message.content.strip()
 
     except Exception as e:
-        
+       
         return (
             "Sorry, I'm having a little trouble looking that up right now. "
             "A team member will follow up with you shortly! "
