@@ -1,32 +1,40 @@
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
-import { Flame, Thermometer, Snowflake, Users, RefreshCw } from "lucide-react";
-import { fetchLeads } from "../api";
+import { Flame, Thermometer, Snowflake, Users, RefreshCw, Bell, MousePointerClick } from "lucide-react";
+import { fetchLeads, fetchEscalations } from "../api";
+import ConversationModal from "./ConversationModal";
 
 const STATUS_COLOR = { Hot: "var(--hot)", Warm: "var(--warm)", Cold: "var(--cold)" };
 
 export default function Dashboard() {
   const [leads, setLeads] = useState([]);
+  const [escalations, setEscalations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedSessionId, setSelectedSessionId] = useState(null);
 
-  async function loadLeads() {
-    setIsLoading(true);
+  async function loadData() {
     setError(null);
     try {
-      const data = await fetchLeads();
-      setLeads(data);
+      const [leadsData, escalationsData] = await Promise.all([fetchLeads(), fetchEscalations()]);
+      setLeads(leadsData);
+      setEscalations(escalationsData);
     } catch (err) {
-      setError("Couldn't load leads. Is the backend running?");
-      console.error("fetchLeads failed:", err);
+      setError("Couldn't load dashboard data. Is the backend running?");
+      console.error("Dashboard load failed:", err);
     } finally {
       setIsLoading(false);
     }
   }
 
+  function handleRefresh() {
+    setIsLoading(true);
+    loadData();
+  }
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadLeads();
+    loadData();
   }, []);
 
   const counts = { Hot: 0, Warm: 0, Cold: 0 };
@@ -44,7 +52,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <div className="dashboard-toolbar">
         <h2>Lead Overview</h2>
-        <button className="refresh-btn" onClick={loadLeads} disabled={isLoading}>
+        <button className="refresh-btn" onClick={handleRefresh} disabled={isLoading}>
           <RefreshCw size={14} className={isLoading ? "spin" : ""} />
           Refresh
         </button>
@@ -83,10 +91,37 @@ export default function Dashboard() {
         </ResponsiveContainer>
       </div>
 
+      {/* Escalation Feed -- real proof the "never sleeps" alert system fired,
+          pulled straight from notifier.py's log file, not a claim in a chat bubble */}
+      <div className="glass-panel escalation-card">
+        <h3>
+          <Bell size={15} />
+          Escalation Feed
+          {escalatedCount > 0 && <span className="escalated-pill">{escalatedCount} active</span>}
+        </h3>
+        {escalations.length === 0 ? (
+          <p className="empty-state">
+            No escalations yet -- when a conversation crosses the hot-lead confidence threshold,
+            the alert that fires will appear here in real time.
+          </p>
+        ) : (
+          <div className="escalation-list">
+            {escalations.slice(0, 5).map((entry, i) => (
+              <pre key={i} className="escalation-entry">
+                {entry}
+              </pre>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className="glass-panel table-card">
         <h3>
           Recent Conversations
-          {escalatedCount > 0 && <span className="escalated-pill">{escalatedCount} escalated</span>}
+          <span className="hint">
+            <MousePointerClick size={12} />
+            click a row for the full transcript
+          </span>
         </h3>
         {leads.length === 0 && !isLoading ? (
           <p className="empty-state">No conversations yet -- chat with the bot to see leads appear here.</p>
@@ -104,7 +139,7 @@ export default function Dashboard() {
             </thead>
             <tbody>
               {leads.map((lead) => (
-                <tr key={lead.session_id}>
+                <tr key={lead.session_id} className="clickable-row" onClick={() => setSelectedSessionId(lead.session_id)}>
                   <td className="mono">{lead.session_id.slice(0, 8)}</td>
                   <td>
                     <span className="status-pill" style={{ color: STATUS_COLOR[lead.lead_status] }}>
@@ -121,6 +156,10 @@ export default function Dashboard() {
           </table>
         )}
       </div>
+
+      {selectedSessionId && (
+        <ConversationModal sessionId={selectedSessionId} onClose={() => setSelectedSessionId(null)} />
+      )}
 
       <style>{`
         .dashboard {
@@ -180,17 +219,27 @@ export default function Dashboard() {
           }
         }
 
-        .chart-card, .table-card {
+        .chart-card, .table-card, .escalation-card {
           padding: 18px;
           margin-bottom: 16px;
         }
 
-        .chart-card h3, .table-card h3 {
+        .chart-card h3, .table-card h3, .escalation-card h3 {
           font-size: 0.95rem;
           margin-bottom: 14px;
           display: flex;
           align-items: center;
           gap: 8px;
+        }
+
+        .hint {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 0.7rem;
+          font-weight: 400;
+          color: var(--text-dim);
         }
 
         .escalated-pill {
@@ -205,6 +254,26 @@ export default function Dashboard() {
         .empty-state {
           color: var(--text-muted);
           font-size: 0.85rem;
+        }
+
+        .escalation-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 220px;
+          overflow-y: auto;
+        }
+
+        .escalation-entry {
+          background: rgba(249, 115, 22, 0.06);
+          border: 1px solid rgba(249, 115, 22, 0.2);
+          border-radius: var(--radius-md);
+          padding: 10px 12px;
+          font-family: var(--font-mono);
+          font-size: 0.72rem;
+          color: var(--text-muted);
+          white-space: pre-wrap;
+          margin: 0;
         }
 
         .leads-table {
@@ -226,6 +295,15 @@ export default function Dashboard() {
         .leads-table td {
           padding: 8px 10px;
           border-bottom: 1px solid var(--glass-border);
+        }
+
+        .clickable-row {
+          cursor: pointer;
+          transition: background 0.12s;
+        }
+
+        .clickable-row:hover {
+          background: rgba(255, 255, 255, 0.03);
         }
 
         .mono {

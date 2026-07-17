@@ -1,18 +1,19 @@
+import os
 import uuid
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
- 
+
 import database
 from agents.coordinator import classify_intent
 from agents.sales_agent import handle as sales_agent_handle
 from agents.lead_qualifier import analyze_lead
 from agents.quotation_agent import generate_quotation
 from notifier import notify_hot_lead
- 
+
 app = FastAPI(title="SalesPilot AI", version="0.1.0")
- 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,16 +23,16 @@ app.add_middleware(
 )
 
 app.mount("/files", StaticFiles(directory="generated_quotations"), name="files")
- 
+
 @app.on_event("startup")
 def on_startup():
     """Runs once when the server starts. Ensures our SQLite tables exist."""
     database.init_db()
-  
+
 class ChatRequest(BaseModel):
-    session_id: str | None = None 
+    session_id: str | None = None  
     message: str
- 
+
 class ChatResponse(BaseModel):
     session_id: str
     reply: str
@@ -41,43 +42,45 @@ class ChatResponse(BaseModel):
     confidence: int
     sentiment: str
     should_escalate: bool
- 
+
+
 class QuoteRequest(BaseModel):
     customer_name: str
     product_query: str
     is_student: bool = False
- 
+
 @app.get("/")
 def root():
     """Simple health check -- visiting this URL confirms the server is alive."""
     return {"status": "SalesPilot AI backend is running", "docs": "/docs"}
- 
+
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
+    
     session_id = request.session_id or str(uuid.uuid4())
 
     database.save_message(session_id, "user", request.message)
     history = database.get_conversation_history(session_id)
 
-    prior_history = history[:-1]  
+    prior_history = history[:-1] 
     intent_result = classify_intent(request.message, conversation_history=prior_history)
     intent = intent_result["intent"]
- 
+
     lead_result = analyze_lead(history)
     database.upsert_lead(session_id, lead_result)
- 
+
     if intent == "general_or_greeting":
         reply = "Hi there! I'm the TechHub AI assistant. Looking for a laptop or phone today, or have a question I can help with?"
         agent_used = "greeting_handler"
     else:
         reply = sales_agent_handle(request.message, conversation_history=prior_history)
         agent_used = "sales_agent"
- 
+
     database.save_message(session_id, "assistant", reply, agent_used=agent_used)
- 
+
     if lead_result["should_escalate"]:
         notify_hot_lead(session_id, lead_result, request.message)
- 
+
     return ChatResponse(
         session_id=session_id,
         reply=reply,
@@ -88,7 +91,7 @@ def chat(request: ChatRequest):
         sentiment=lead_result["sentiment"],
         should_escalate=lead_result["should_escalate"],
     )
- 
+
 @app.post("/quote")
 def create_quote(request: QuoteRequest):
     """
@@ -103,13 +106,40 @@ def create_quote(request: QuoteRequest):
     )
     if "error" in result:
         return {"success": False, "error": result["error"]}
- 
+
     filename = result["pdf_path"].split("\\")[-1].split("/")[-1]
     result["download_url"] = f"/files/{filename}"
     return {"success": True, "quotation": result}
- 
+
 @app.get("/leads")
 def list_leads():
     """Powers the Day 2 dashboard -- returns all leads with their latest scores."""
     return database.get_all_leads()
- 
+
+@app.get("/leads/{session_id}/messages")
+def get_session_messages(session_id: str):
+    """
+    Returns the full conversation transcript for one session -- lets the
+    dashboard's "click a conversation to see the messages" feature actually
+    show what was said, not just the final lead score.
+    """
+    return database.get_conversation_history(session_id)
+
+@app.get("/escalations")
+def get_escalations():
+    """
+    Returns recent hot-lead escalation alerts from the log file notifier.py
+    writes to. This is what makes the 'never sleeps' escalation feature
+    VISIBLE and provable in the dashboard/demo, instead of just a claim the
+    chatbot makes in conversation with no evidence behind it.
+    """
+    log_path = os.path.join(os.path.dirname(__file__), "..", "data", "escalation_log.txt")
+    if not os.path.exists(log_path):
+        return {"escalations": []}
+
+    with open(log_path, "r", encoding="utf-8") as f:
+        raw = f.read()
+
+    entries = [e.strip() for e in raw.split("=" * 60) if e.strip()]
+    entries.reverse()
+    return {"escalations": entries}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
- 
+
 const client = axios.create({
   baseURL: BASE_URL,
   headers: { "Content-Type": "application/json" },
@@ -13,6 +13,7 @@ export async function sendChatMessage(message, sessionId) {
     session_id: sessionId || null,
   });
   return response.data;
+ 
 }
 
 export async function requestQuotation(customerName, productQuery, isStudent = false) {
@@ -23,15 +24,24 @@ export async function requestQuotation(customerName, productQuery, isStudent = f
   });
   return response.data;
 }
- 
+
 export async function fetchLeads() {
   const response = await client.get("/leads");
   return response.data;
 }
- 
+
 export function getFileUrl(relativePath) {
   return `${BASE_URL}${relativePath}`;
 }
- 
+
+export async function fetchSessionMessages(sessionId) {
+  const response = await client.get(`/leads/${sessionId}/messages`);
+  return response.data;
+}
+
+export async function fetchEscalations() {
+  const response = await client.get("/escalations");
+  return response.data.escalations;
+}
+
 export default client;
- 
