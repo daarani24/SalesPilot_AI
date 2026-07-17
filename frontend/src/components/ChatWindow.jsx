@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, FileText } from "lucide-react";
 import MessageBubble from "./MessageBubble";
-import { sendChatMessage } from "../api";
+import QuoteModal from "./QuoteModal";
+import { sendChatMessage, getFileUrl } from "../api";
 
 const WELCOME_MESSAGE = {
   role: "assistant",
@@ -15,6 +16,7 @@ export default function ChatWindow({ onLeadUpdate }) {
   const [input, setInput] = useState("");
   const [sessionId, setSessionId] = useState(null);
   const [isSending, setIsSending] = useState(false);
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -67,6 +69,23 @@ export default function ChatWindow({ onLeadUpdate }) {
     }
   }
 
+  function handleQuoteGenerated(quotation) {
+    const summary = `Your official quotation is ready:\n\n**${quotation.product_name}**\nBase price: ₹${quotation.base_price.toLocaleString("en-IN")}${
+      quotation.discount_applied ? `\nStudent discount: -₹${quotation.discount_amount.toLocaleString("en-IN")}` : ""
+    }\nGST (18%): ₹${quotation.tax_amount.toLocaleString("en-IN")}\n**Total: ₹${quotation.total.toLocaleString("en-IN")}**`;
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content: summary,
+        agentUsed: "quotation_agent",
+        isNew: true,
+        downloadUrl: getFileUrl(quotation.download_url),
+      },
+    ]);
+  }
+
   return (
     <div className="glass-panel chat-window">
       <div className="chat-messages" ref={scrollRef}>
@@ -77,6 +96,7 @@ export default function ChatWindow({ onLeadUpdate }) {
             content={msg.content}
             agentUsed={msg.agentUsed}
             isNew={msg.isNew}
+            downloadUrl={msg.downloadUrl}
           />
         ))}
         {isSending && (
@@ -89,6 +109,13 @@ export default function ChatWindow({ onLeadUpdate }) {
       </div>
 
       <div className="chat-input-row">
+        <button
+          className="quote-trigger-btn"
+          onClick={() => setShowQuoteModal(true)}
+          title="Generate an official PDF quotation"
+        >
+          <FileText size={16} />
+        </button>
         <input
           type="text"
           value={input}
@@ -101,6 +128,10 @@ export default function ChatWindow({ onLeadUpdate }) {
           <Send size={16} />
         </button>
       </div>
+
+      {showQuoteModal && (
+        <QuoteModal onClose={() => setShowQuoteModal(false)} onQuoteGenerated={handleQuoteGenerated} />
+      )}
 
       <style>{`
         .chat-window {
@@ -149,6 +180,21 @@ export default function ChatWindow({ onLeadUpdate }) {
           align-items: center;
           justify-content: center;
           width: 42px;
+          flex-shrink: 0;
+        }
+
+        .quote-trigger-btn {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--radius-md);
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: color 0.15s, border-color 0.15s;
+        }
+
+        .quote-trigger-btn:hover {
+          color: var(--accent-end);
+          border-color: var(--accent-end);
         }
 
         .typing-indicator {
