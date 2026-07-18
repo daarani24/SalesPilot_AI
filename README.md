@@ -6,7 +6,7 @@ Built for the FlowZint AI Hackathon 2026 — Sales Bot category.
 
 🔗 **Live Demo:** https://sales-pilot-ai-sable.vercel.app/
 🔗 **Backend API Docs:** https://salespilot-ai-nhaw.onrender.com/docs
-🎥 **Demo Video:** 
+🎥 **Demo Video:** https://drive.google.com/file/d/1sVegI2IFtVeguudUdvm-pKE4t8DhVdsp/view?usp=drive_link
 
 > The backend runs on Render's free tier, which sleeps after 15 minutes of
 > inactivity. The first message after a period of inactivity may take
