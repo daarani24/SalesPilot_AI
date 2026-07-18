@@ -6,7 +6,7 @@ Built for the FlowZint AI Hackathon 2026 — Sales Bot category.
 
 🔗 **Live Demo:** https://sales-pilot-ai-sable.vercel.app/
 🔗 **Backend API Docs:** https://salespilot-ai-nhaw.onrender.com/docs
-🎥 **Demo Video:** *(add your video link here before submitting)*
+🎥 **Demo Video:** 
 
 > The backend runs on Render's free tier, which sleeps after 15 minutes of
 > inactivity. The first message after a period of inactivity may take
@@ -173,20 +173,6 @@ npm install
 # Create .env with: VITE_API_URL=http://127.0.0.1:8000
 npm run dev
 ```
-
----
-
-## API Endpoints
-
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/chat` | POST | Main conversation endpoint |
-| `/quote` | POST | Generate a PDF quotation |
-| `/leads` | GET | All leads with scores |
-| `/leads/{session_id}/messages` | GET | Full transcript for one session |
-| `/escalations` | GET | Recent hot-lead alerts |
-
-Full interactive API reference available at `/docs` on the backend URL.
 
 ---
 
