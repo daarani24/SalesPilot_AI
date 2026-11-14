@@ -2,10 +2,10 @@
 
 **The Multi-Agent Sales Team That Never Sleeps.**
 
-Built for the FlowZint AI Hackathon 2026 — Sales Bot category.
-
 🔗 **Live Demo:** https://sales-pilot-ai-sable.vercel.app/
+
 🔗 **Backend API Docs:** https://salespilot-ai-nhaw.onrender.com/docs
+
 🎥 **Demo Video:** https://drive.google.com/file/d/1sVegI2IFtVeguudUdvm-pKE4t8DhVdsp/view?usp=drive_link
 
 > The backend runs on Render's free tier, which sleeps after 15 minutes of
@@ -23,6 +23,8 @@ Businesses lose valuable customers because of:
 - Poor or forgotten follow-ups
 - Generic recommendations with no real product knowledge
 - Traditional rule-based chatbots that can't handle real conversation
+
+---
 
 ## Solution
 
@@ -47,14 +49,14 @@ business.
 ```mermaid
 flowchart TD
     User([Customer Message]) --> API[FastAPI /chat endpoint]
-    API --> DB1[(Save message\nto SQLite)]
+    API --> DB1[(Save message<br/>to SQLite)]
     API --> Coordinator
 
     subgraph "Multi-Agent System"
-        Coordinator["🎯 Coordinator Agent\n(intent classification)"]
-        Qualifier["📊 Lead Qualifier Agent\n(scoring + sentiment)"]
-        Sales["🛍️ Sales / Product Expert Agent\n(RAG-grounded replies)"]
-        Quote["🧾 Quotation Agent\n(PDF generation)"]
+        Coordinator["🎯 Coordinator Agent<br/>(intent classification)"]
+        Qualifier["📊 Lead Qualifier Agent<br/>(scoring + sentiment)"]
+        Sales["🛍️ Sales / Product Expert Agent<br/>(RAG-grounded replies)"]
+        Quote["🧾 Quotation Agent<br/>(PDF generation)"]
     end
 
     Coordinator -->|"intent"| Route{Route by intent}
@@ -62,9 +64,9 @@ flowchart TD
     Route -->|"product / pricing / objection"| Sales
 
     API --> Qualifier
-    Qualifier -->|"should_escalate = true"| Notifier["🔔 Escalation Notifier\n(log + optional email)"]
+    Qualifier -->|"should_escalate = true"| Notifier["🔔 Escalation Notifier<br/>(log + optional email)"]
 
-    Sales --> RAG[(ChromaDB\nVector Search)]
+    Sales --> RAG[(ChromaDB<br/>Vector Search)]
     RAG --> Catalog[/techhub_catalog.txt/]
 
     User -.->|"clicks Quote button"| Quote
@@ -73,7 +75,7 @@ flowchart TD
 
     Sales --> Reply([Reply to customer])
     Greeting --> Reply
-    Qualifier --> Dashboard["📈 Dashboard\n(leads, charts, escalation feed)"]
+    Qualifier --> Dashboard["📈 Dashboard<br/>(leads, charts, escalation feed)"]
 ```
 
 ### Design Highlights
@@ -81,9 +83,7 @@ flowchart TD
 - **Strategy pattern for agents** — each specialist implements the same
   `handle()` interface; the Coordinator picks which one runs without
   needing to know how any of them work internally.
-- **RAG grounding, not memorized answers** — the Sales Agent retrieves the
-  actual catalog chunk via ChromaDB and answers only from what's retrieved,
-  eliminating hallucinated prices or specs.
+- **RAG grounded responses** — retrieves product information from the business knowledge base to reduce incorrect pricing and product specifications.
 - **Confidence-gated escalation** — leads are escalated to a human only
   when *both* lead status is "Hot" *and* confidence crosses a threshold,
   reducing false alarms versus a simple keyword trigger.
@@ -101,13 +101,13 @@ flowchart TD
 
 ---
 
-## Tech Stack (100% free tier)
+## Tech Stack & Deployment
 
 | Layer | Technology |
 |---|---|
 | Frontend | React, Vite, Recharts, Lucide Icons |
 | Backend | FastAPI (Python) |
-| AI / LLM | Groq API — Llama 3.1 8B Instant + Llama 4 Scout |
+| AI / LLM | Groq API — openai/gpt-oss-20b |
 | Vector DB / RAG | ChromaDB (ONNX-based embeddings) |
 | Database | SQLite |
 | PDF Generation | ReportLab |
@@ -157,6 +157,7 @@ salespilot-ai/
 ## Running Locally
 
 **Backend**
+
 ```bash
 cd backend
 python -m venv venv
@@ -167,6 +168,7 @@ uvicorn main:app --reload --port 8000
 ```
 
 **Frontend**
+
 ```bash
 cd frontend
 npm install
