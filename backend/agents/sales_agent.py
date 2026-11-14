@@ -1,5 +1,6 @@
 import os
 from groq import Groq
+from config import SALES_MODEL
 from dotenv import load_dotenv
 from rag.vector_store import get_catalog_store
 
@@ -7,7 +8,7 @@ load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = SALES_MODEL
 
 MAX_HISTORY_TURNS = 6
 

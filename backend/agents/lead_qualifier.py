@@ -1,13 +1,14 @@
 import os
 import json
 from groq import Groq
+from config import ROUTER_MODEL
 from dotenv import load_dotenv
 
 load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-MODEL = "llama-3.1-8b-instant"
+MODEL = ROUTER_MODEL
 
 VALID_LEAD_STATUSES = ["Hot", "Warm", "Cold"]
 VALID_SENTIMENTS = ["Happy", "Interested", "Confused", "Negative", "Urgent"]
