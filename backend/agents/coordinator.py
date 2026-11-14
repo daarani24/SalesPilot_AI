@@ -1,4 +1,5 @@
 import os
+import re
 import json
 from groq import Groq
 from dotenv import load_dotenv
@@ -36,12 +37,6 @@ Respond with ONLY valid JSON in this exact format, nothing else:
 """
 
 def classify_intent(customer_message: str, conversation_history: list[dict] | None = None) -> dict:
-    """
-    Calls the LLM once with a small, cheap prompt to classify intent.
-    conversation_history: optional list of prior {"role", "content"} turns
-    (NOT including the current customer_message) -- used to disambiguate
-    short/context-dependent replies.
-    """
     context_block = ""
     if conversation_history:
         recent = conversation_history[-CONTEXT_WINDOW:]
@@ -61,20 +56,28 @@ def classify_intent(customer_message: str, conversation_history: list[dict] | No
             ],
             temperature=0.2,
             max_tokens=100,
+            response_format={"type": "json_object"},
         )
         raw = response.choices[0].message.content.strip()
-        result = json.loads(raw)
+        print(f"[coordinator] RAW: {raw!r}")
 
-        if result.get("intent") not in VALID_INTENTS:
-            result["intent"] = "general_or_greeting"
-            result["reasoning"] = "Fallback: model returned an unrecognized intent."
+        match = re.search(r"\{.*\}", raw, re.DOTALL)
+        if not match:
+            raise ValueError("No JSON object found in model output")
+        result = json.loads(match.group(0))
 
+        result["intent"] = str(result.get("intent", "")).strip().lower()
+        if result["intent"] not in VALID_INTENTS:
+            print(f"[coordinator] Unrecognized intent: {result['intent']!r}")
+            result["intent"] = "product_inquiry"
+            result["reasoning"] = "Fallback: unrecognized intent."
         return result
 
-    except (json.JSONDecodeError, Exception) as e:
+    except Exception as e:
+        print(f"[coordinator] ERROR: {type(e).__name__}: {e}")
         return {
-            "intent": "general_or_greeting",
-            "reasoning": f"Fallback due to error: {str(e)}",
+            "intent": "product_inquiry",   # fail toward the sales agent, not the greeting
+            "reasoning": f"Fallback due to error: {e}",
         }
 
 if __name__ == "__main__":
